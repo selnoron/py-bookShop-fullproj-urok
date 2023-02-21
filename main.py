@@ -21,6 +21,13 @@ fake = Faker()
 app: FlaskApp = Flask(__name__)
 books: list[Book] = []
 
+@app.route("/<id>")
+def book_page(id: str):
+    return render_template(
+        'book.html',
+        book=books[int(id)]
+    )
+
 @app.route("/")
 def main_page():
     return render_template(
